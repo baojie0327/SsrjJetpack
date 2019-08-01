@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_navigation"
+        app:startDestination="@id/homeFragment">
+
+    <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.jackson.ssrjjetpack.view.fragment.HomeFragment"
+            android:label="fragment_home"
+            tools:layout="@layout/fragment_home"/>
+    <fragment
+            android:id="@+id/hotShowFragment"
+            android:name="com.jackson.ssrjjetpack.view.fragment.HotShowFragment"
+            android:label="fragment_hot_show"
+            tools:layout="@layout/fragment_hot_show"/>
+    <fragment
+            android:id="@+id/rankListFragment"
+            android:name="com.jackson.ssrjjetpack.view.fragment.RankListFragment"
+            android:label="fragment_rank_list"
+            tools:layout="@layout/fragment_rank_list"/>
+    <fragment
+            android:id="@+id/mineFragment"
+            android:name="com.jackson.ssrjjetpack.view.fragment.MineFragment"
+            android:label="fragment_mine"
+            tools:layout="@layout/fragment_mine">
+
+        <action
+                android:id="@+id/action_mineFragment_to_registerFragment"
+                app:destination="@id/registerFragment"/>
+
+        <action
+                android:id="@+id/action_mineFragment_to_loginFragment"
+                app:destination="@id/loginFragment"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/registerFragment"
+            android:name="com.jackson.ssrjjetpack.view.fragment.RegisterFragment"
+            android:label="fragment_register"
+            tools:layout="@layout/fragment_register"/>
+
+    <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.jackson.ssrjjetpack.view.fragment.LoginFragment"
+            android:label="fragment_login"
+            tools:layout="@layout/fragment_login"/>
+</navigation>
