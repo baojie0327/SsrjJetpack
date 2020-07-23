@@ -10,7 +10,7 @@ import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.jackson.ssrjjetpack.R
-import com.jackson.ssrjjetpack.view.LoginActivity
+import com.jackson.ssrjjetpack.view.activity.LoginActivity
 import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.startActivity
 

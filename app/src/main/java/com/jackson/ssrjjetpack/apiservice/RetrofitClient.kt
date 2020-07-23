@@ -1,6 +1,8 @@
 package com.jackson.ssrjjetpack.apiservice
 
+import com.jackson.ssrjjetpack.BuildConfig
 import com.jackson.ssrjjetpack.utils.Constant
+import com.jackson.ssrjjetpack.utils.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -35,7 +37,7 @@ class RetrofitClient(baseUrl: String) {
         // 拦截器
         val interceptor = HttpLoggingInterceptor()
         interceptor.level =
-            if (Constant.LOG_DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
 
         // OkHttp 设置信任所有的证书
         val trustManager = object : X509TrustManager {
@@ -76,6 +78,7 @@ class RetrofitClient(baseUrl: String) {
             .addConverterFactory(ScalarsConverterFactory.create()) // 支持String
             .addConverterFactory(GsonConverterFactory.create())    //设置 Json 转换器
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())  //RxJava 适配器
+            .addCallAdapterFactory(LiveDataCallAdapterFactory())  //LiveData 适配器
             .client(okHttpClient)
             .build()
 

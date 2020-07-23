@@ -10,4 +10,13 @@
     <string name="register">注册</string>
     <string name="login">登录</string>
     <string name="head_title">标题</string>
+    <string name="permission">为确保本功能的正常使用，请允许以下权限：\n1、读取手机存储权限\n 2、照相机权限\n 3、获取位置权限</string>
+    <string name="return_from_app_setting">从应用程序设置返回，权限情况：
+        \n 读取手机内存权限:%s
+        \n 照相机权限:%s
+        \n 获取位置权限:%s
+    </string>
+    <string name="permission_rationale">缺少必要权限，应用程序可能无法工作，打开设置界面修改应用权限</string>
+    <string name="permission_title">权限要求</string>
+    <string name="permission_negation">取消</string>
 </resources>

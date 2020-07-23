@@ -7,4 +7,7 @@
     <color name="main_color">#00BD30</color>
     <color name="main_gray">#4e5864</color>
     <color name="norm_grey">#eeeeee</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="rating">#ffd54f</color>
 </resources>

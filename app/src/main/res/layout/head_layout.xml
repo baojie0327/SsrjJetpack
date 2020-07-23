@@ -1,48 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/main_color"
-        android:id="@+id/header">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--后退-->
-    <LinearLayout
-            android:id="@+id/ll_back"
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:layout_centerVertical="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="@dimen/margin_5"
-            android:orientation="horizontal">
+    <data>
+        <variable
+                name="titleViewModel"
+                type="com.jackson.ssrjjetpack.viewmodel.TitleViewModel"/>
+    </data>
 
-        <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:contentDescription="@string/app_name"
-                android:background="@mipmap/withdraw_white"/>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <!--标题-->
-    <TextView
-            android:id="@+id/tv_head_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:maxWidth="200dp"
-            android:singleLine="true"
-            android:text="@string/head_title"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"/>
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/main_color"
+            android:id="@+id/header">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--左侧图片-->
+        <LinearLayout
+                android:id="@+id/ll_left"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="@dimen/margin_5"
+                android:onClick="@{titleViewModel::onClickView}"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    app:imageResource="@{titleViewModel.leftIconResId}"/>
+        </LinearLayout>
+
+        <!--左侧文字-->
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="@dimen/margin_10"
+                android:textColor="@android:color/white"
+                android:visibility="gone"
+                android:text="@{titleViewModel.leftText}"/>
+
+        <!--标题-->
+        <TextView
+                android:id="@+id/tv_head_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:maxWidth="200dp"
+                android:singleLine="true"
+                android:text="@{titleViewModel.title}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/font_18"/>
+
+        <!--右侧标题-->
+        <TextView
+                android:id="@+id/tv_right_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:maxWidth="200dp"
+                android:singleLine="true"
+                android:visibility="gone"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:text="@{titleViewModel.rightTitle}"
+                android:textColor="@android:color/white"
+                android:onClick="@{titleViewModel::onClickView}"
+                android:textSize="@dimen/font_15"/>
+
+        <!--右侧图片-->
+        <LinearLayout
+                android:id="@+id/ll_right"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginEnd="@dimen/margin_5"
+                android:visibility="gone"
+                android:onClick="@{titleViewModel::onClickView}"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/app_name"
+                    app:imageResource="@{titleViewModel.rightIconResId}"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
+
+

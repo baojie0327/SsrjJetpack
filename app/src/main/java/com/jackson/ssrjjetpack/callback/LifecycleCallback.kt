@@ -1,4 +1,4 @@
-package com.jackson.ssrjjetpack
+package com.jackson.ssrjjetpack.callback
 
 
 /*
@@ -12,6 +12,7 @@ package com.jackson.ssrjjetpack
 * @version 1.0.0
 * since 2019 07 31
 */
+
 interface LifecycleCallback {
 
     fun update(message:String)

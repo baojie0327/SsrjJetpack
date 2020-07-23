@@ -1,8 +1,9 @@
-package com.jackson.ssrjjetpack
+package com.jackson.ssrjjetpack.callback
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.jackson.ssrjjetpack.callback.LifecycleCallback
 
 
 /*
@@ -16,7 +17,7 @@ import androidx.lifecycle.OnLifecycleEvent
 * @version 1.0.0
 * since 2019 07 31
 */
-class MyObserver(var lifecycle:Lifecycle,var lifecycleCallback:LifecycleCallback) :LifecycleObserver{
+class MyObserver(var lifecycle:Lifecycle,var lifecycleCallback: LifecycleCallback) :LifecycleObserver{
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun connectOnCreate(){
@@ -44,5 +45,7 @@ class MyObserver(var lifecycle:Lifecycle,var lifecycleCallback:LifecycleCallback
     private fun print(string:String){
         lifecycleCallback.update(string)
     }
+
+
 
 }

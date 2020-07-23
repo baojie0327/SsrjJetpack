@@ -3,6 +3,9 @@ package com.jackson.ssrjjetpack
 import android.app.Application
 import android.content.Context
 import androidx.multidex.MultiDex
+import com.jackson.ssrjjetpack.utils.Constant
+import org.greenrobot.eventbus.EventBus
+import timber.log.Timber
 
 
 /*
@@ -22,6 +25,12 @@ class MyApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
+      //  EventBus.builder().addIndex( MyEventBusIndex()).installDefaultEventBus()
+
         instance=this
     }
 

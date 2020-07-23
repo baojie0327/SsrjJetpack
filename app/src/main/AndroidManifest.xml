@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.jackson.ssrjjetpack">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
             android:name=".MyApp"
             android:allowBackup="false"
@@ -10,6 +18,14 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.EventBusActivity">
+        </activity>
+        <activity android:name=".MyLocationActivity">
+        </activity>
+        <activity android:name=".view.activity.RoomUseActivity">
+        </activity>
+        <activity android:name=".view.activity.PermissionActivity">
+        </activity>
         <activity android:name=".BaseActivity">
         </activity>
         <activity
@@ -21,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.LoginActivity">
+        <activity android:name=".view.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
             </intent-filter>

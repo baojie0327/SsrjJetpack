@@ -1,77 +1,1 @@
-package com.jackson.ssrjjetpack
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LifecycleRegistry
-import com.jackson.ssrjjetpack.utils.StatusBarUtil
-import org.jetbrains.anko.toast
-
-open class BaseActivity : AppCompatActivity() {
-
-  /**  private lateinit var lifecycleRegistry: LifecycleRegistry **/
-
-    private lateinit var myObserver: MyObserver
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        /**   ComponentActivity  里已经实现了     **/
-        /**    lifecycleRegistry= LifecycleRegistry(this)  **/
-        /**   lifecycleRegistry.markState(Lifecycle.State.CREATED)  **/
-
-        myObserver= MyObserver(lifecycle,object :LifecycleCallback{
-            override fun update(message: String) {
-               Log.d("hbj--",message)
-            }
-
-        })
-
-        lifecycle.addObserver(myObserver)
-
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-      //  lifecycleRegistry.markState(Lifecycle.State.STARTED)
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-      //  lifecycleRegistry.markState(Lifecycle.State.RESUMED)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-      //  lifecycleRegistry.markState(Lifecycle.State.DESTROYED)
-    }
-
-
-
-    /**
-     * 设置沉浸式主题
-     */
-    protected fun initAppBar(type:Int){
-        when(type){
-            0->{
-                //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding
-                StatusBarUtil.setRootViewFitsSystemWindows(this,true)
-                //设置状态栏透明
-                StatusBarUtil.setTranslucentStatus(this)
-                StatusBarUtil.setStatusBarColor(this, 0xff00BD30.toInt())
-            }
-            1->{
-                StatusBarUtil.setRootViewFitsSystemWindows(this,false)
-                StatusBarUtil.setTranslucentStatus(this)
-            }
-        }
-
-//        if (!StatusBarUtil.setStatusBarDarkTheme(this,true)){
-//            StatusBarUtil.setStatusBarColor(this,0xff008577.toInt())
-//        }
-    }
-}
+package com.jackson.ssrjjetpackimport androidx.appcompat.app.AppCompatActivityimport android.os.Bundleimport android.util.Logimport com.jackson.ssrjjetpack.callback.EventBusObserverimport com.jackson.ssrjjetpack.callback.LifecycleCallbackimport com.jackson.ssrjjetpack.callback.MyObserverimport com.jackson.ssrjjetpack.utils.PermissionUtilsimport com.jackson.ssrjjetpack.utils.StatusBarUtilimport org.jetbrains.anko.toastimport pub.devrel.easypermissions.AppSettingsDialogimport pub.devrel.easypermissions.EasyPermissionsopen class BaseActivity : AppCompatActivity(), EasyPermissions.PermissionCallbacks, EasyPermissions.RationaleCallbacks {    /**  private lateinit var lifecycleRegistry: LifecycleRegistry **/  //  private lateinit var myObserver: MyObserver    override fun onCreate(savedInstanceState: Bundle?) {        super.onCreate(savedInstanceState)        /**   ComponentActivity  里已经实现了     **/        /**    lifecycleRegistry= LifecycleRegistry(this)  **/        /**   lifecycleRegistry.markState(Lifecycle.State.CREATED)  **///        myObserver = MyObserver(lifecycle, object : LifecycleCallback {//            override fun update(message: String) {//                Log.d("hbj--", message)//            }////        })    //    lifecycle.addObserver(myObserver)    }    override fun onStart() {        super.onStart()        //  lifecycleRegistry.markState(Lifecycle.State.STARTED)    }    override fun onResume() {        super.onResume()        //  lifecycleRegistry.markState(Lifecycle.State.RESUMED)    }    override fun onDestroy() {        super.onDestroy()        //  lifecycleRegistry.markState(Lifecycle.State.DESTROYED)    }    /**     * 设置沉浸式主题     */    protected fun initAppBar(type: Int) {        when (type) {            0 -> {                //当FitsSystemWindows设置 true 时，会在屏幕最上方预留出状态栏高度的 padding                StatusBarUtil.setRootViewFitsSystemWindows(this, true)                //设置状态栏透明                StatusBarUtil.setTranslucentStatus(this)                StatusBarUtil.setStatusBarColor(this, 0xff00BD30.toInt())            }            1 -> {                StatusBarUtil.setRootViewFitsSystemWindows(this, false)                StatusBarUtil.setTranslucentStatus(this)            }        }//        if (!StatusBarUtil.setStatusBarDarkTheme(this,true)){//            StatusBarUtil.setStatusBarColor(this,0xff008577.toInt())//        }    }    /**     *检查是否有权限     */    fun hasPermissions(vararg permissions: String): Boolean {        return EasyPermissions.hasPermissions(this, *permissions)    }    /**     * EasyPermissions handles the request result     */    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {        super.onRequestPermissionsResult(requestCode, permissions, grantResults)        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)    }    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {        Log.d("hbj--","run here!")        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {            AppSettingsDialog.Builder(this)                .setRationale(R.string.permission_rationale)                .setTitle(R.string.permission_title)                .setNegativeButton(R.string.permission_negation).build().show()        }    }    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) = Unit    override fun onRationaleDenied(requestCode: Int) = Unit    override fun onRationaleAccepted(requestCode: Int) = Unit}
