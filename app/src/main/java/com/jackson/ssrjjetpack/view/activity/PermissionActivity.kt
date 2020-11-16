@@ -37,6 +37,8 @@ class PermissionActivity : BaseActivity() {
             applyPermission()
         }
 
+        tv_show.text="你好"+"\n"+"你发挂号费个单方事故"
+
 
 
 

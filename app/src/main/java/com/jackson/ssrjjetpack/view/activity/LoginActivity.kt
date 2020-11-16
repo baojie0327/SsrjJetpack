@@ -28,8 +28,12 @@ class LoginActivity : BaseActivity() {
 
         val msg:Message= Message.obtain()
         msg.what=1
+        msg.arg1
         msg.obj="AA"
         handler.sendMessage(msg)
+        handler.sendMessageAtFrontOfQueue(msg)
+        handler.sendEmptyMessage(0)
+
 
     }
 }
